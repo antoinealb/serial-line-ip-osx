@@ -21,6 +21,7 @@ def rx_thread(conn, tun_fd):
     for packet in decoder:
         os.write(tun_fd, packet)
 
+
 def tx_thread(conn, tun_fd):
     """
     Thread reading from the TUN device and forwarding it to the serial connection.
@@ -58,7 +59,7 @@ def main():
     rx_thd.start()
     tx_thd.start()
 
-#    rx_thd.join()
+    rx_thd.join()
     tx_thd.join()
 
 
