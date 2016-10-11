@@ -1,6 +1,7 @@
 from hypothesis import given
 from hypothesis import strategies as st
 import unittest
+import io
 
 from slip import *
 
@@ -39,5 +40,5 @@ class EndToEndTestCase(unittest.TestCase):
     @given(st.binary())
     def test_encode_then_decode(self, data):
         encoded = encode(data)
-        decoded = next(decode(encoded))
+        decoded = next(decode(io.BytesIO(encoded)))
         assert data == decoded
