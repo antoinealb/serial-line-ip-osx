@@ -1,11 +1,11 @@
 from setuptools import setup
 
 setup(
-    name='slip',
+    name='slip2tun',
     version='1.0.0',
     description='Serial Line IP adapter',
-    author='WISE Robotics',
-    author_email='contact@wise-robotics.com',
+    author='Antoine Albertelli',
+    author_email='antoine.albertelli@wise-robotics.com',
     license='BSD',
     packages=['slip'],
     classifiers=[
@@ -17,6 +17,9 @@ setup(
         'Programming Language :: Python :: 3.5',
         ],
     test_requires=['hypothesis'],
+    install_requires=[
+        'pyserial',
+        ],
 
     entry_points={
         'console_scripts': [
