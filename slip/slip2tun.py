@@ -49,7 +49,7 @@ def parse_args():
 def main():
     args = parse_args()
 
-    conn = serial.Serial(args.port)
+    conn = serial.Serial(args.port, baudrate=args.baudrate)
     tun_fd = os.open("/dev/{}".format(args.interface), os.O_RDWR)
     subprocess.call("ifconfig {} 192.168.3.1 192.168.3.2".format(args.interface).split())
 
