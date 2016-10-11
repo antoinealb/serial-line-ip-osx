@@ -8,6 +8,7 @@ import serial
 import time
 import subprocess
 import os
+import sys
 
 import threading
 from slip import decode, encode
@@ -48,6 +49,10 @@ def parse_args():
 
 def main():
     args = parse_args()
+
+    if os.getuid() != 0:
+        print("slip2tun must run as root.")
+        sys.exit(1)
 
     conn = serial.Serial(args.port, baudrate=args.baudrate)
     tun_fd = os.open("/dev/{}".format(args.interface), os.O_RDWR)
