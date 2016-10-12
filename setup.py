@@ -16,7 +16,7 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         ],
-    test_requires=['hypothesis'],
+    tests_require=['hypothesis'],
     install_requires=[
         'pyserial',
         ],
