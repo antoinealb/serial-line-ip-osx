@@ -1,0 +1,7 @@
+unittest:
+  stage: test
+  image: python:3.5
+  before_script:
+    - pip install hypothesis==3.5.3
+  script:
+    - python -m unittest discover
