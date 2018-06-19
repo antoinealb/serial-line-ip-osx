@@ -44,6 +44,8 @@ def parse_args():
 
     parser.add_argument("-i", "--interface", default="tun0",
                         help="network interface to use (default tun0)")
+    parser.add_argument("--local-ip", "-l", default="192.168.3.1", help="IP of the slip interface on this computer")
+    parser.add_argument("--remote-ip", "-r", default="192.168.3.20", help="IP of the slip interface of the endpoint")
 
     return parser.parse_args()
 
@@ -56,7 +58,7 @@ def main():
 
     conn = serial.Serial(args.port, baudrate=args.baudrate)
     tun_fd = os.open("/dev/{}".format(args.interface), os.O_RDWR)
-    subprocess.call("ifconfig {} 192.168.3.1 192.168.3.2".format(args.interface).split())
+    subprocess.call("ifconfig {} {} {}".format(args.interface, args.local_ip, args.remote_ip).split())
 
     rx_thd = threading.Thread(target=rx_thread, args=(conn, tun_fd))
     tx_thd = threading.Thread(target=tx_thread, args=(conn, tun_fd))
